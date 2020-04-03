@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import comment
 # Create your views here.
 
 def home(request):
-    return render(request,'book/index.html')
+    com = comment.objects.order_by('id')
+    context={'comment' : com }
+    return render(request,'book/index.html', context)
 
 def sign(request):
     return render(request,'book/sign.html')
